@@ -1,3 +1,4 @@
+
 # main.py
 from models import Producto
 from crud import *
@@ -6,7 +7,9 @@ import os
 def limpiar_pantalla():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
 def mostrar_menu_principal():
+
     print("\n SISTEMA DE INVENTARIO")
     print("1. Añadir producto")
     print("2. Ver todos los productos")
@@ -301,6 +304,7 @@ def main():
         else:
             print("\n❌ Opción no válida")
             input("\nPresione Enter para continuar...")
+
 
 if __name__ == '__main__':
     from database import init_db
