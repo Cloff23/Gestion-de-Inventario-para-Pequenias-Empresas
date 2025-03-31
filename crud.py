@@ -83,7 +83,6 @@ def eliminar_producto(id_producto):
     cursor = conn.cursor()
     cursor.execute("DELETE FROM productos WHERE id = ?", (id_producto,))
     conn.commit()
-
     conn.close()
 
 # Funcion para autenticar un usuario
@@ -113,5 +112,6 @@ def generar_reporte():
     total = cursor.fetchone()['total'] or 0
     
     conn.close()
+
     return con_stock, sin_stock, total
 

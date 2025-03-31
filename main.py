@@ -4,6 +4,17 @@ from models import Producto
 from crud import *
 import os
 
+import sentry_sdk
+
+
+sentry_sdk.init(
+    dsn="https://8436fb52989d7719908d244eb7f4273f@o4509069881769984.ingest.us.sentry.io/4509069899005952",
+    # Add data like request headers and IP for users,
+    # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+    send_default_pii=True,
+)
+
+
 def limpiar_pantalla():
     os.system('cls' if os.name == 'nt' else 'clear')
 

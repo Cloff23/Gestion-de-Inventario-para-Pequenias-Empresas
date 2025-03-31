@@ -17,7 +17,6 @@ def init_db():
         nombre TEXT NOT NULL,
         descripcion TEXT,
         cantidad INTEGER NOT NULL CHECK(cantidad >= 0),
-
         precio REAL NOT NULL,
         categoria TEXT
     )
@@ -45,6 +44,5 @@ def init_db():
 
 if __name__ == '__main__':
     init_db()
-
     print("✅ Base de datos inicializada correctamente.")
 
