@@ -9,6 +9,7 @@ def init_db():
     conn = get_db_connection()
     cursor = conn.cursor()
     
+
     # Tabla de productos
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS productos (
@@ -20,6 +21,7 @@ def init_db():
         categoria TEXT
     )
     """)
+
     
     # Tabla de usuarios
     cursor.execute("""
@@ -36,9 +38,11 @@ def init_db():
     VALUES ('admin', 'admin123')
     """)
     
+
     conn.commit()
     conn.close()
 
 if __name__ == '__main__':
     init_db()
     print("✅ Base de datos inicializada correctamente.")
+
