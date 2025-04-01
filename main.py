@@ -25,10 +25,12 @@ def mostrar_menu_principal():
     print("1. Añadir producto")
     print("2. Ver todos los productos")
     print("3. Actualizar stock")
-    print("4. Eliminar producto")
-    print("5. Buscar productos")
-    print("6. Generar reporte")
-    print("7. Salir")
+    print("4. Editar producto")  
+    print("5. Eliminar producto")
+    print("6. Buscar productos")
+    print("7. Generar reporte")
+    print("8. Salir")
+
 
 def login():
     limpiar_pantalla()
@@ -76,11 +78,19 @@ def menu_agregar_producto():
     limpiar_pantalla()
     print("\n NUEVO PRODUCTO")
     
-    nombre = input_con_salida("Nombre: ")
-    if nombre is None: return
+    while True:
+        nombre = input_con_salida("Nombre: ")
+        if nombre is None or nombre.strip() == "":
+            print("❌ Por favor, escriba un nombre.")
+            continue
+        break
     
-    descripcion = input_con_salida("Descripción: ")
-    if descripcion is None: return
+    while True:
+        descripcion = input_con_salida("Descripción: ")
+        if descripcion is None or descripcion.strip() == "":
+            print("❌ Por favor, escriba una descripción.")
+            continue
+        break
     
     while True:
         cantidad = input_con_salida("Cantidad inicial: ")
@@ -106,8 +116,12 @@ def menu_agregar_producto():
         except ValueError:
             print("❌ Debe ingresar un número válido")
     
-    categoria = input_con_salida("Categoría: ")
-    if categoria is None: return
+    while True:
+        categoria = input_con_salida("Categoría: ")
+        if categoria is None or categoria.strip() == "":
+            print("❌ Por favor, escriba una categoría.")
+            continue
+        break
     
     nuevo_producto = Producto(nombre, descripcion, cantidad, precio, categoria)
     crear_producto(nuevo_producto)
@@ -285,6 +299,82 @@ def mostrar_reporte():
     print(f"\nVALOR TOTAL DEL INVENTARIO: ${total:.2f}")
     input("\nPresione Enter para continuar...")
 
+def menu_editar_producto():
+    while True:
+        limpiar_pantalla()
+        print("\n EDITAR PRODUCTO")
+
+        if not mostrar_lista_productos():
+            input("\nPresione Enter para volver...")
+            return
+
+        id_producto = input_con_salida("\nID del producto a editar: ")
+        if id_producto is None:
+            return
+
+        try:
+            id_producto = int(id_producto)
+            producto = obtener_productos(filtro="id", valor=id_producto)
+            if not producto:
+                print("❌ No existe un producto con ese ID")
+                input("Presione Enter para continuar...")
+                continue
+            producto = dict(producto[0])  
+            break
+        except ValueError:
+            print("❌ Debe ingresar un número válido")
+            input("Presione Enter para continuar...")
+
+    limpiar_pantalla()
+    print("\n EDITANDO PRODUCTO")
+    print(f"(Deje en blanco para mantener el valor actual)\n")
+
+    nuevo_nombre = input_con_salida(f"Nombre [{producto['nombre']}]: ")
+    if nuevo_nombre is not None and nuevo_nombre.strip() != "":
+        producto['nombre'] = nuevo_nombre.strip()
+
+    nueva_desc = input_con_salida(f"Descripción [{producto['descripcion']}]: ")
+    if nueva_desc is not None and nueva_desc.strip() != "":
+        producto['descripcion'] = nueva_desc.strip()
+
+    while True:
+        nueva_cantidad = input_con_salida(f"Cantidad [{producto['cantidad']}]: ")
+        if nueva_cantidad is None or nueva_cantidad.strip() == "":
+            break
+        try:
+            cantidad = int(nueva_cantidad)
+            if cantidad < 0:
+                print("❌ La cantidad no puede ser negativa")
+                continue
+            producto['cantidad'] = cantidad
+            break
+        except ValueError:
+            print("❌ Debe ingresar un número entero")
+
+    while True:
+        nuevo_precio = input_con_salida(f"Precio [{producto['precio']}]: ")
+        if nuevo_precio is None or nuevo_precio.strip() == "":
+            break
+        try:
+            precio = float(nuevo_precio)
+            if precio <= 0:
+                print("❌ El precio debe ser mayor a 0")
+                continue
+            producto['precio'] = precio
+            break
+        except ValueError:
+            print("❌ Debe ingresar un número válido")
+
+    nueva_categoria = input_con_salida(f"Categoría [{producto['categoria']}]: ")
+    if nueva_categoria is not None and nueva_categoria.strip() != "":
+        producto['categoria'] = nueva_categoria.strip()
+
+    # Guardar cambios
+    actualizar_producto(producto)
+    print("\n✅ Producto actualizado correctamente.")
+    input("\nPresione Enter para continuar...")
+
+
 def main():
     if not login():
         return
@@ -304,12 +394,14 @@ def main():
         elif opcion == "3":
             menu_actualizar_stock()
         elif opcion == "4":
-            menu_eliminar_producto()
+            menu_editar_producto()  # <- nuevo
         elif opcion == "5":
-            menu_buscar_productos()
+            menu_eliminar_producto()
         elif opcion == "6":
-            mostrar_reporte()
+            menu_buscar_productos()
         elif opcion == "7":
+            mostrar_reporte()
+        elif opcion == "8":
             print("\n👋 ¡Hasta pronto!")
             break
         else:

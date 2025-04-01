@@ -115,3 +115,20 @@ def generar_reporte():
 
     return con_stock, sin_stock, total
 
+def actualizar_producto(producto):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        UPDATE productos
+        SET nombre = ?, descripcion = ?, cantidad = ?, precio = ?, categoria = ?
+        WHERE id = ?
+    """, (
+        producto['nombre'],
+        producto['descripcion'],
+        producto['cantidad'],
+        producto['precio'],
+        producto['categoria'],
+        producto['id']
+    ))
+    conn.commit()
+    conn.close()
