@@ -85,7 +85,7 @@ No se presentaron mayores inconvenientes durante el trabajo en equipo, lo que fa
 
 ## Experiencia de uso de Greentest.ai
 
-La app es relativamente buena, es muy cómoda para realizar las pruebas unitarias, pero es muy poco intuitiva para alguien que está recién descubriendo la app. El uso de la IA para solicitar pruebas es muy bueno y de hecho lo utilizamos ya que era más cómodo. Crear manualmente una prueba es poco cómodo, no se entiende muy bien que hay que hacer si no hay alguna ayuda o algún tipo de indicador, por esto mismo solo usamos la IA para crear las pruebas. Además existe un pequeño error en cuanto se escribe la descripción, si no hace un copy paste al cuadro de texto y hay algun caracter no aceptado por la app no se indica que tipo de carácter es el que está incorrecto solo manda el error de texto.
+La app es relativamente buena, es muy cómoda para realizar las pruebas unitarias, pero es muy poco intuitiva para alguien que está recién descubriendo la app. El uso de la IA para solicitar pruebas es muy bueno y de hecho lo utilizamos ya que era más cómodo. Crear manualmente una prueba es poco cómodo, no se entiende muy bien que hay que hacer si no hay alguna ayuda o algún tipo de indicador, por esto mismo solo usamos la IA para crear las pruebas. Además existe un pequeño error en cuanto se escribe la descripción, si se hace un copy paste para el cuadro de texto y hay algun caracter no aceptado por la app no se indica que tipo de carácter es el que está incorrecto solo manda el error de texto. Ademas estaria bueno agregar algun tipo de documentacion para poder orientarse mejor de las funcionalidades que se pueden hacer en la app.
 
 ## Como usar el programa
 
