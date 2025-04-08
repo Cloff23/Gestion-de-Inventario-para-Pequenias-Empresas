@@ -94,7 +94,18 @@ La app es relativamente buena, es muy cómoda para realizar las pruebas unitaria
 
 ## Como usar el programa
 
-Para utilizar el sistema se debera tener instalado python en el dispositivo que se desea utilizar. No se requiera instalar librerias externas
+Para utilizar el sistema, se debe tener instalado **Python 3** en el dispositivo.
+
+Además, es necesario instalar la librería `sentry-sdk`. Para ello, abre la terminal y ejecuta:
+
+```bash
+pip install --upgrade sentry-sdk
+```
+Una vez instalada la librería, el programa se ejecuta desde la terminal con el siguiente comando:
+
+```bash
+python main.py
+```
 
 ## Contribuciones
 
